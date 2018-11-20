@@ -19,6 +19,6 @@ class LabelInput {
 
     function __toString() {
         return "<label for='".$this->name."'> $this->nameLabel</label>"
-            ."<br><input type='".$this->type."' name='".$this->name."'/><br>";
+            ."<input type='".$this->type."' name='".$this->name."' required/>";
     }
 }

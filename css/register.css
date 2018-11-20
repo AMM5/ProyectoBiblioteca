@@ -1,0 +1,12 @@
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+.tituloForm {
+    text-align: center;
+}
+
+input {
+    width: 10vw;
+}

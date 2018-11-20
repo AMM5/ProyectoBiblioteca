@@ -6,7 +6,7 @@
               content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <link rel="stylesheet" href="https://necolas.github.io/normalize.css/8.0.0/normalize.css"/>
-        <link rel="stylesheet" type="text/css" href="home.css"/>
+        <link rel="stylesheet" type="text/css" href="css/home.css"/>
         <title>Home</title>
 
     </head>
@@ -24,6 +24,7 @@
                 <li><a href="#">News</a></li>
                 <li><a href="#">Events</a></li>
                 <li><button onclick="document.getElementById('login').style.display='flex'" style="background-color: white;">Login</button></li>
+                <li><a href="register/register.php">Sign Up</a></li>
             </ul>
         </nav>
         <!--Login-->
@@ -33,9 +34,9 @@
                 /* Script name: buildForm
                  *  Description: Uses the form to create a simple HTML form
                  */
-                require_once ("ClassForm.php");
+                require_once("formularios/ClassForm.php");
 
-                $phone_form = new ClassForm("process.php","Submit Phone");
+                $phone_form = new ClassForm("process.php","Submit", "Reset");
 
                 $phone_form->addField("first_name","First Name","text");
                 $phone_form->addField("last_name" ,"Last Name","text");
