@@ -156,5 +156,22 @@ class User {
         $this->phone_number = $phone_number;
     }
 
+    function insertDate() {
+        require_once ("BD/conexionBD.php");
 
+        $mysqli = new mysqli(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
+
+        if ($mysqli === false) {
+            die("ERROR: Could not connect. ".$mysqli->connect_error);
+        }
+
+        $sql = "INSERT INTO users VALUES (null, '$this->username', '$this->password', '$this->name_user', '$this->first_surname', '$this->second_surname', '$this->dni', '$this->email', $this->phone_number, 1);";
+        // $conexion->query($sentenciaSQL);
+        if (mysqli_query($mysqli, $sql)) {
+            echo "New record created successfully";
+        } else {
+            echo "Error: " . $sql . "<br>" . mysqli_error($mysqli);
+        }
+        mysqli_close($mysqli);
+    }
 }
