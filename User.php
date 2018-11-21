@@ -41,7 +41,7 @@ class User {
      */
     public function getPassword()
     {
-        return $this->password;
+        return password_hash($this->password, PASSWORD_DEFAULT);
     }
 
     /**
@@ -49,7 +49,7 @@ class User {
      */
     public function setPassword($password)
     {
-        $this->password = password_hash($password, PASSWORD_DEFAULT);
+        $this->password = $password;
     }
 
     /**
@@ -159,15 +159,34 @@ class User {
 
     function checkUsers() {
         if ($this->checkUsername()) {
-
         }
     }
 
+    function checklogin() {
+        if ($this->checkUsername()) {
+            $sql = "select * from users where username = '{$this->username}';";
+            $check = $this->db->query($sql);
+            $user = $check->fetch_object();
+
+            echo "Password: $this->password";
+            echo "Hash_Password: $user->password";
+
+            if (password_verify($this->password, $user->password)) {
+                header("location:../index.php");
+            } else {
+                echo "The password you entered was not valid.";
+            }
+        } else {
+            echo "No account found with that username.";
+        }
+        mysqli_close($this->db);
+    }
+
     function insertDate() {
-        $sql = "INSERT INTO users VALUES (null, '$this->username', '$this->password', '$this->name_user', '$this->first_surname', '$this->second_surname', '$this->dni', '$this->email', $this->phone_number, 1);";
+        $sql = "INSERT INTO users VALUES (null, '$this->username', '{$this->getPassword()}', '$this->name_user', '$this->first_surname', '$this->second_surname', '$this->dni', '$this->email', $this->phone_number, 1);";
 
         if (mysqli_query($this->db, $sql)) {
-            header("location:index.php");
+            header("location:../index.php");
         } else {
             echo "Error: " . $sql . "<br>" . mysqli_error($this->db);
         }

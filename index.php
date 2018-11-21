@@ -29,24 +29,6 @@
         </nav>
         <!--Login-->
         <div id="login" class="modal">
-
-            <?php
-                /* Script name: buildForm
-                 *  Description: Uses the form to create a simple HTML form
-                 */
-                require_once("formularios/ClassForm.php");
-
-                $phone_form = new ClassForm("process.php","Submit", "Reset");
-
-                $phone_form->addField("first_name","First Name","text");
-                $phone_form->addField("last_name" ,"Last Name","text");
-                $phone_form->addField("phone","Phone","tel");
-
-                echo "<h3>Please fill in the following form:</h3>";
-
-                $phone_form->displayForm();
-
-            ?>
         </div>
 
         <!--BOOKS-->
