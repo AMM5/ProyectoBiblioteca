@@ -5,15 +5,15 @@
  */
     require_once ("../User.php");
 
-    $name = $_POST["name"];
-    $surname1 = $_POST["surname1"];
-    $surname2 = $_POST["surname2"];
-    $dni = $_POST["dni"];
-    $email = $_POST["email"];
-    $phone = $_POST["phone"];
-    $username = $_POST["username"];
-    $pwd = $_POST["pwd"];
+    $usr = new User ();
 
-    $usr = new User ($username, $pwd, $name, $surname1, $surname2, $dni, $email, $phone);
+    $usr->setNameUser($_POST["name"]);
+    $surname1 = $usr->setFirstSurname($_POST["surname1"]);
+    $surname2 = $usr->setSecondSurname($_POST["surname2"]);
+    $dni = $usr->setDni($_POST["dni"]);
+    $email = $usr->setEmail($_POST["email"]);
+    $phone = $usr->setPhoneNumber($_POST["phone"]);
+    $username = $usr->setUsername($_POST["username"]);
+    $pwd = $usr->setPassword($_POST["pwd"]);
 
     $usr->insertDate();

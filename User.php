@@ -2,9 +2,8 @@
 /**
  * Created by PhpStorm.
  * User: diang
- * Date: 20/11/2018
- * Time: 23:36
  */
+require_once 'BD/conexionBD.php';
 
 class User {
     private $username;
@@ -15,17 +14,10 @@ class User {
     private $dni;
     private $email;
     private $phone_number;
+    private $db;
 
-    function __construct($username, $password, $name_user, $first_surname,
-                         $second_surname, $dni, $email, $phone_number) {
-        $this->username = $username;
-        $this->password = $password;
-        $this->name_user = $name_user;
-        $this->first_surname = $first_surname;
-        $this->second_surname = $second_surname;
-        $this->dni = $dni;
-        $this->email = $email;
-        $this->phone_number = $phone_number;
+    function __construct() {
+        $this->db = BD::connect();
     }
 
     /**
@@ -57,7 +49,7 @@ class User {
      */
     public function setPassword($password)
     {
-        $this->password = $password;
+        $this->password = password_hash($password, PASSWORD_DEFAULT);
     }
 
     /**
@@ -155,23 +147,30 @@ class User {
     {
         $this->phone_number = $phone_number;
     }
+    /**************CHECKING USER***********/
+    function checkUsername() {
+        $sql = "select * from users where username = '{$this->username}';";
+        $check = $this->db->query($sql);
+        if ($check->num_rows == 1) {
+            return true;
+        }
+        return false;
+    }
+
+    function checkUsers() {
+        if ($this->checkUsername()) {
+
+        }
+    }
 
     function insertDate() {
-        require_once ("BD/conexionBD.php");
-
-        $mysqli = new mysqli(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
-
-        if ($mysqli === false) {
-            die("ERROR: Could not connect. ".$mysqli->connect_error);
-        }
-
         $sql = "INSERT INTO users VALUES (null, '$this->username', '$this->password', '$this->name_user', '$this->first_surname', '$this->second_surname', '$this->dni', '$this->email', $this->phone_number, 1);";
-        // $conexion->query($sentenciaSQL);
-        if (mysqli_query($mysqli, $sql)) {
-            echo "New record created successfully";
+
+        if (mysqli_query($this->db, $sql)) {
+            header("location:index.php");
         } else {
-            echo "Error: " . $sql . "<br>" . mysqli_error($mysqli);
+            echo "Error: " . $sql . "<br>" . mysqli_error($this->db);
         }
-        mysqli_close($mysqli);
+        mysqli_close($this->db);
     }
 }
