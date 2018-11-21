@@ -4,6 +4,7 @@
  * User: diang
  */
 require_once 'BD/conexionBD.php';
+if(!isset($_SESSION)) session_start();
 
 class User {
     private $username;
@@ -168,16 +169,21 @@ class User {
             $check = $this->db->query($sql);
             $user = $check->fetch_object();
 
-            echo "Password: $this->password";
-            echo "Hash_Password: $user->password";
+           /* echo "Password: $this->password";
+            echo "Hash_Password: $user->password";*/
 
             if (password_verify($this->password, $user->password)) {
+                $_SESSION['login'] = $user;
                 header("location:../index.php");
             } else {
-                echo "The password you entered was not valid.";
+                $_SESSION['login'] = "failed";
+                header("location:login.php");
+                //echo "The password you entered was not valid.";
             }
         } else {
-            echo "No account found with that username.";
+            $_SESSION['login'] = "failed";
+            header("location:login.php");
+           // echo "No account found with that username.";
         }
         mysqli_close($this->db);
     }
@@ -186,10 +192,14 @@ class User {
         $sql = "INSERT INTO users VALUES (null, '$this->username', '{$this->getPassword()}', '$this->name_user', '$this->first_surname', '$this->second_surname', '$this->dni', '$this->email', $this->phone_number, 1);";
 
         if (mysqli_query($this->db, $sql)) {
+            $_SESSION['register'] = "completed";
             header("location:../index.php");
         } else {
-            echo "Error: " . $sql . "<br>" . mysqli_error($this->db);
+            $_SESSION['register'] = "failed";
+            header("location:register.php");
+           // echo "Error: " . $sql . "<br>" . mysqli_error($this->db);
         }
+
         mysqli_close($this->db);
     }
 }

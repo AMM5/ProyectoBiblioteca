@@ -28,7 +28,7 @@ class ClassForm {
             }
             echo "<div class='botones'>";
             echo "<input type='submit' value='".$this->button."'/>";
-            echo "<input type='submit' value='".$this->buttonReset."'/>";
+            echo "<input type='reset' value='".$this->buttonReset."'/>";
             echo "</div>";
         echo "</form>";
     }

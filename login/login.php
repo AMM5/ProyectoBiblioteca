@@ -10,6 +10,7 @@
 </head>
 <body>
     <?php
+        if(!isset($_SESSION)) session_start();
         /* Script name: buildForm
          *  Description: Uses the form to create a simple HTML form
          */
@@ -22,6 +23,11 @@
 
         echo "<h2>Login</h2>";
         echo "<p>Please fill in your credentials to login.</p>";
+
+        if(isset($_SESSION["login"]) && !is_object($_SESSION["login"])){
+            echo "<p>The data entered haven't been correct.</p>";
+            unset($_SESSION['login']);
+        }
 
         $loginform->displayForm();
     ?>

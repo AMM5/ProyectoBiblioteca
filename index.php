@@ -23,7 +23,7 @@
                 <li><a href="#">Books</a></li>
                 <li><a href="#">News</a></li>
                 <li><a href="#">Events</a></li>
-                <li><button onclick="document.getElementById('login').style.display='flex'" style="background-color: white;">Login</button></li>
+                <li><a>Login</a></li>
                 <li><a href="register/register.php">Sign Up</a></li>
             </ul>
         </nav>
