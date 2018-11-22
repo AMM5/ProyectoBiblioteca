@@ -15,6 +15,7 @@ class User {
     private $dni;
     private $email;
     private $phone_number;
+    private $typeUser=1;
     private $db;
 
     function __construct() {
@@ -148,6 +149,23 @@ class User {
     {
         $this->phone_number = $phone_number;
     }
+
+    /**
+     * @return int
+     */
+    public function getTypeUser()
+    {
+        return $this->typeUser;
+    }
+
+    /**
+     * @param int $typeUser
+     */
+    public function setTypeUser($typeUser)
+    {
+        $this->typeUser = $typeUser;
+    }
+
     /**************CHECKING USER***********/
     function checkUsername() {
         $sql = "select * from users where username = '{$this->username}';";
@@ -174,6 +192,13 @@ class User {
 
             if (password_verify($this->password, $user->password)) {
                 $_SESSION['login'] = $user;
+
+                if ($user->type_of_user == 2) {
+                    $_SESSION['librarian'] = $user;
+                } elseif($user->type_of_user == 3) {
+                    $_SESSION['admin'] = $user;
+                }
+
                 header("location:../index.php");
             } else {
                 $_SESSION['login'] = "failed";
@@ -189,7 +214,7 @@ class User {
     }
 
     function insertDate() {
-        $sql = "INSERT INTO users VALUES (null, '$this->username', '{$this->getPassword()}', '$this->name_user', '$this->first_surname', '$this->second_surname', '$this->dni', '$this->email', $this->phone_number, 1);";
+        $sql = "INSERT INTO users VALUES (null, '$this->username', '{$this->getPassword()}', '$this->name_user', '$this->first_surname', '$this->second_surname', '$this->dni', '$this->email', $this->phone_number, $this->typeUser);";
 
         if (mysqli_query($this->db, $sql)) {
             $_SESSION['register'] = "completed";

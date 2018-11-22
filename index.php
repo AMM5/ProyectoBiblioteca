@@ -1,3 +1,6 @@
+<?php
+    if(!isset($_SESSION)) session_start();
+?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -20,11 +23,21 @@
         <!--MENU-->
         <nav>
             <ul>
-                <li><a href="#">Books</a></li>
-                <li><a href="#">News</a></li>
-                <li><a href="#">Events</a></li>
-                <li><a>Login</a></li>
-                <li><a href="register/register.php">Sign Up</a></li>
+                <li><a href="#">Home</a></li>
+                <?php if (!isset($_SESSION["login"])):?>
+                    <li><a href="login/login.php">Login</a></li>
+                    <li><a href="register/register.php">Sign Up</a></li>
+                <?php else: ?>
+                    <li><a href="#">My Profile </a></li>
+                    <?php if(isset($_SESSION["librarian"])): ?>
+                        <li><a href="#">Users</a></li>
+                    <?php elseif(isset($_SESSION["admin"])): ?>
+                        <li><a href="#">Users</a></li>
+                        <li><a href="#">Librarians</a></li>
+                    <?php endif;?>
+                    <li><a href="#">Reservation</a></li>
+                    <li><form action="login/logout.php"><input type="submit" value="Logout"/></form></li>
+                <?php endif;?>
             </ul>
         </nav>
         <!--Login-->

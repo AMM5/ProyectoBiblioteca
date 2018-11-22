@@ -9,7 +9,10 @@
     <title>Document</title>
 </head>
 <body>
+
     <?php
+    /*user=1, librarian=2,admin=3*/
+
         if(!isset($_SESSION)) session_start();
         /* Script name: buildForm
          *  Description: Uses the form to create a simple HTML form
