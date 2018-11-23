@@ -17,8 +17,8 @@ class ClassForm {
         $this->buttonReset = $buttonReset;
     }
 
-    function addField($name, $nameLabel, $type) {
-        $this->labelinput[] = new Labelinput($name, $nameLabel, $type);
+    function addField($name, $nameLabel, $type, $value) {
+        $this->labelinput[] = new Labelinput($name, $nameLabel, $type, $value);
     }
 
     function displayForm() {

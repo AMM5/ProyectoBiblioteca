@@ -7,6 +7,7 @@ require_once 'BD/conexionBD.php';
 if(!isset($_SESSION)) session_start();
 
 class User {
+    private $id;
     private $username;
     private $password;
     private $name_user;
@@ -20,6 +21,22 @@ class User {
 
     function __construct() {
         $this->db = BD::connect();
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param mixed $id
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
     }
 
     /**
@@ -166,7 +183,7 @@ class User {
         $this->typeUser = $typeUser;
     }
 
-    /**************CHECKING USER***********/
+/**************CHECKING USER***********/
     function checkUsername() {
         $sql = "select * from users where username = '{$this->username}';";
         $check = $this->db->query($sql);
@@ -181,6 +198,7 @@ class User {
         }
     }
 
+/******************LOGIN********************************/
     function checklogin() {
         if ($this->checkUsername()) {
             $sql = "select * from users where username = '{$this->username}';";
@@ -212,7 +230,26 @@ class User {
         }
         mysqli_close($this->db);
     }
+/****************UPDATE DATA***********************/
+    function updateData() {
+        $sql = "UPDATE  users SET  username='{$this->username}', name_user='{$this->name_user}', 
+                                            first_surname='{$this->first_surname}', second_surname='{$this->second_surname}', 
+                                            dni='{$this->dni}', email='{$this->email}', phone_number={$this->phone_number} 
+                WHERE id={$this->id};";
 
+        if (mysqli_query($this->db, $sql)) {
+            $_SESSION['updateUser'] = "completed";
+            header("location:../index.php");
+        } else {
+            $_SESSION['updateUser'] = "failed";
+            header("location:profile.php");
+            // echo "Error: " . $sql . "<br>" . mysqli_error($this->db);
+        }
+
+        mysqli_close($this->db);
+    }
+
+/****************INSERT DATA***********************/
     function insertDate() {
         $sql = "INSERT INTO users VALUES (null, '$this->username', '{$this->getPassword()}', '$this->name_user', '$this->first_surname', '$this->second_surname', '$this->dni', '$this->email', $this->phone_number, $this->typeUser);";
 
