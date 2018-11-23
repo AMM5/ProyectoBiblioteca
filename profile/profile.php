@@ -9,7 +9,7 @@
 
     $user = $_SESSION['login'];
 
-    $profile = new ClassForm("processProfile.php","Save", "Reset");
+    $profile = new ClassForm("processProfile.php","Save", "");
 
     $profile->addField("name","Name:","text",$user->name_user);
     $profile->addField("surname1" ,"First Surname:","text", $user->first_surname);

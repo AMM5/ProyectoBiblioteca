@@ -27,8 +27,12 @@ class ClassForm {
                 echo $label;
             }
             echo "<div class='botones'>";
-            echo "<input type='submit' value='".$this->button."'/>";
-            echo "<input type='reset' value='".$this->buttonReset."'/>";
+                if ($this->buttonReset != "") {
+                    echo "<input type='submit' value='" . $this->button . "'/>";
+                    echo "<input type='reset' value='" . $this->buttonReset . "'/>";
+                } else {
+                    echo "<input type='submit' value='" . $this->button . "'/>";
+                }
             echo "</div>";
         echo "</form>";
     }

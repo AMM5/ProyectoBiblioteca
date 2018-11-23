@@ -10,7 +10,7 @@ if(!isset($_SESSION)) session_start();
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://necolas.github.io/normalize.css/8.0.0/normalize.css"/>
     <link rel="stylesheet" type="text/css" href="<?=URL?>css/home.css"/>
-    <link rel="stylesheet" type="text/css" href="<?=URL?>/css/register.css"/>
+    <link rel="stylesheet" type="text/css" href="<?=URL?>css/register.css"/>
     <title>Home</title>
 
 </head>

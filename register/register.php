@@ -18,15 +18,15 @@
 
             $phone_form = new ClassForm("process.php","Submit", "Reset");
 
-            $phone_form->addField("name","Name:","text");
-            $phone_form->addField("surname1" ,"First Surname:","text");
-            $phone_form->addField("surname2","Second Surname:","text");
-            $phone_form->addField("dni","DNI:","text");
-            $phone_form->addField("email","Email:","email");
-            $phone_form->addField("phone","Phone Number:","tel");
-            $phone_form->addField("username","Username:","text");
-            $phone_form->addField("pwd","Password:","password");
-            $phone_form->addField("pwd2","Confirm Password:","password");
+            $phone_form->addField("name","Name:","text","");
+            $phone_form->addField("surname1" ,"First Surname:","text","");
+            $phone_form->addField("surname2","Second Surname:","text","");
+            $phone_form->addField("dni","DNI:","text","");
+            $phone_form->addField("email","Email:","email","");
+            $phone_form->addField("phone","Phone Number:","tel","");
+            $phone_form->addField("username","Username:","text","");
+            $phone_form->addField("pwd","Password:","password","");
+            $phone_form->addField("pwd2","Confirm Password:","password","");
             echo "<h2>Sign Up</h2>";
             echo "<p>Please fill this form to create an account.</p>";
 
