@@ -4,4 +4,4 @@
  * User: diang
  */
 
-DEFINE("URL","http://localhost:63343/web/");
+DEFINE("URL","http://localhost:63342/web/");

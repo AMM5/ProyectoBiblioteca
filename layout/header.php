@@ -34,7 +34,7 @@ if(!isset($_SESSION)) session_start();
                         <li><a href="#">Users</a></li>
                         <li><a href="#">Librarians</a></li>
                     <?php endif;?>
-                    <li><a href="#">Reservation</a></li>
+                    <li><a href="<?=URL?>reservation/reservation.php"">Reservation</a></li>
                     <li><form action="<?=URL?>login/logout.php"><input type="submit" value="Logout"/></form></li>
                 <?php endif;?>
             </ul>

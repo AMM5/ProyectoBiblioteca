@@ -1,6 +1,6 @@
 <?php
-require_once "links/links.php";
-require_once "layout/header.php";
+require_once "../links/links.php";
+require_once "../layout/header.php";
 /*user=1, librarian=2,admin=3*/
 
     if(!isset($_SESSION)) session_start();

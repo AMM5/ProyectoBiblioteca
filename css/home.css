@@ -1,3 +1,9 @@
+/*Books*/
+.books {
+    display: grid;
+    grid-template-columns: repeat(4,auto);
+    grid-gap: 1rem;
+}
 /*LOGIN*/
 body {font-family: Arial, Helvetica, sans-serif;}
 

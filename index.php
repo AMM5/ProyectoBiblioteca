@@ -1,25 +1,21 @@
 <?php
     require_once "links/links.php";
     require_once "layout/header.php";
+    require_once "books/Books.php";
 ?>
-        <!--Login-->
-        <div id="login" class="modal">
-        </div>
-
-        <!--BOOKS-->
-        <div class="books">
-            <a href="#">Books</a>
-        </div>
-
-        <!--NEWS-->
-        <div class="news">
-            <a href="#">News</a>
-        </div>
-
-        <!--EVENTS-->
-        <div class="events">
-            <a href="#">Events</a>
-        </div>
+    <!--BOOKS-->
+<?php $books = new Books();
+      $bok = $books->seeBook()?>
+    <h2>Books</h2>
+    <div class="books">
+        <?php
+            while ($book = $bok->fetch_assoc()) {
+                echo "<div class='book'>
+                             <a href='#'><img src=\"img/{$book['isbn']}.jpg\" alt=\"books\" width='220px' height='278.99px'/></a>
+                        </div>";
+            }
+        ?>
+    </div>
 <?php
     require_once "layout/footer.php";
 ?>
