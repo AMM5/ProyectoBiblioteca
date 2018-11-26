@@ -5,10 +5,18 @@
  */
 
     require_once("../formularios/ClassForm.php");
-    $loginform = new ClassForm("processBook.php","Login", "Reset");
+    $seeBook = new ClassForm("processBook.php","", "");
 
-    $loginform->addField("user","Username:","text","");
-    $loginform->addField("pwd" ,"Password:","password","");
+    $book = new Books();
+    $book->setId($_GET['id']);
+
+    $dataBook = $book->oneBook();
+
+    $seeBook->addField("isbn","ISBN:","text","");
+    $seeBook->addField("name" ,"Name Book:","text","");
+    $seeBook->addField("category" ,"Category:","text","");
+    $seeBook->addField("description" ,"Description:","text","");
+    $seeBook->addField("author" ,"Author:","text","");
 
     echo "<h2>Login</h2>";
     echo "<p>Please fill in your credentials to login.</p>";

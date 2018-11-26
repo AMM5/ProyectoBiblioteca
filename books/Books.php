@@ -124,4 +124,9 @@ class Books {
 
         mysqli_close($this->db);
     }
+
+/**************SEE A ONE BOOK**********************/
+    function oneBook() {
+
+    }
 }

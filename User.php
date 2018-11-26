@@ -183,6 +183,9 @@ class User {
         $this->typeUser = $typeUser;
     }
 
+
+
+
 /**************CHECKING USER***********/
     function checkUsername() {
         $sql = "select * from users where username = '{$this->username}';";

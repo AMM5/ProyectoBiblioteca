@@ -15,15 +15,17 @@ class table {
 
     function __destruct() {}
 
-    function __construct($title,$fields) {
+    function __construct($title,$fields,$files) {
         $this->db = BD::connect();
         $this->title=$title;
         $this->fields=$fields;
+        $this->files=$files;
     }
 
-    function paintTable() {
+/*****************TABLE RESERV*********/
+    function paintTableReserv() {
         $usr = $_SESSION['login'];
-        $sql = "SELECT isbn, name_book, takenDate, returnDate from borrow join copy c on id_copy_fk=c.id JOIN books b on id_book=b.id 
+        $sql = "SELECT id_book_copy_fk, isbn, name_book, takenDate, returnDate from borrow join copy c on id_copy_fk=c.id JOIN books b on id_book=b.id 
                   WHERE id_username = $usr->id;";
 
         $reserv = $this->db->query($sql);
@@ -42,11 +44,11 @@ class table {
         // loop to show results
         while ($row = $reserv->fetch_assoc()) {
             echo
-                "<tr><td><img src=\"../img/{$row['isbn']}.jpg\" width='110px' height='139.5px'/></td><td>".$row['name_book']."</td><td>".$row['takenDate']."</td><td>".$row['returnDate']."</td><td><a href='#'></a></td><td><a href='#'></a></td></tr>";
+                "<tr><td><img src=\"../img/{$row['isbn']}.jpg\" width='110px' height='139.5px'/></td><td>".$row['name_book'].
+                    "</td><td>".$row['takenDate']."</td><td>".$row['returnDate']."</td><td><a href='../books/SeeBook.php?id={$row['id_book_copy_fk']}'><img src='../img/browser.png'/></a></td></tr>";
         }
 
         echo "</tr>";
         echo "</table>";
-
     }
 }
