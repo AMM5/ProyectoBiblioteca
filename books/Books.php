@@ -2,8 +2,6 @@
 /**
  * Created by PhpStorm.
  * User: diang
- * Date: 24/11/2018
- * Time: 16:37
  */
 require_once 'BD/conexionBD.php';
 if(!isset($_SESSION)) session_start();
