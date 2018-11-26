@@ -3,7 +3,7 @@
  * Created by PhpStorm.
  * User: diang
  */
-require_once 'BD/conexionBD.php';
+require_once '../BD/conexionBD.php';
 if(!isset($_SESSION)) session_start();
 class Books {
     private $id;
@@ -14,6 +14,9 @@ class Books {
     private $author_id;
     private $db;
 
+    function __construct() {
+        $this->db = BD::connect();
+    }
     /**
      * @return mixed
      */
@@ -110,10 +113,6 @@ class Books {
         $this->author_id = $author_id;
     }
 
-    function __construct() {
-        $this->db = BD::connect();
-    }
-
 /**************SEE BOOK INSIDE PAGE**********************/
     function seeBook() {
         $sql = "SELECT * from books ORDER BY RAND()";
@@ -127,6 +126,12 @@ class Books {
 
 /**************SEE A ONE BOOK**********************/
     function oneBook() {
+        $sql = "SELECT * from books b join authors a on b.author_id=a.id WHERE b.id= $this->id";
 
+        $register = $this->db->query($sql);
+
+        return $register;
+
+        mysqli_close($this->db);
     }
 }

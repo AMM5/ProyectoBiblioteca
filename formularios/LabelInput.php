@@ -11,17 +11,19 @@ class LabelInput {
     private $nameLabel;
     private $type;
     private $value;
+    private $anything;
 
 
-    function __construct($name, $nameLabel,$type,$value) {
+    function __construct($name, $nameLabel,$type,$value, $anything) {
         $this->name = $name;
         $this->nameLabel = $nameLabel;
         $this->type = $type;
         $this->value = $value;
+        $this->anything = $anything;
     }
 
     function __toString() {
         return "<label for='".$this->name."'> $this->nameLabel</label>"
-            ."<input type='".$this->type."' name='".$this->name."' value='".$this->value."'/>";
+            ."<input type='".$this->type."' name='".$this->name."' value='".$this->value."'$this->anything/>";
     }
 }

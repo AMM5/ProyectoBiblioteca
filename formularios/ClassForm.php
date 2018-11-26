@@ -17,8 +17,8 @@ class ClassForm {
         $this->buttonReset = $buttonReset;
     }
 
-    function addField($name, $nameLabel, $type, $value) {
-        $this->labelinput[] = new Labelinput($name, $nameLabel, $type, $value);
+    function addField($name, $nameLabel, $type, $value, $anything) {
+        $this->labelinput[] = new Labelinput($name, $nameLabel, $type, $value, $anything);
     }
 
     function displayForm() {
@@ -30,7 +30,7 @@ class ClassForm {
                 if ($this->buttonReset != "") {
                     echo "<input type='submit' value='" . $this->button . "'/>";
                     echo "<input type='reset' value='" . $this->buttonReset . "'/>";
-                } else {
+                } else if($this->button != ""){
                     echo "<input type='submit' value='" . $this->button . "'/>";
                 }
             echo "</div>";

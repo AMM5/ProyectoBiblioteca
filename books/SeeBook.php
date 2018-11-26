@@ -3,27 +3,27 @@
  * Created by PhpStorm.
  * User: diang
  */
-
+    require_once "../links/links.php";
+    require_once "../layout/header.php";
     require_once("../formularios/ClassForm.php");
+    require_once ("Books.php");
     $seeBook = new ClassForm("processBook.php","", "");
 
     $book = new Books();
     $book->setId($_GET['id']);
 
-    $dataBook = $book->oneBook();
+    $bok = $book->oneBook();
+    $dataBook = $bok->fetch_assoc();
 
-    $seeBook->addField("isbn","ISBN:","text","");
-    $seeBook->addField("name" ,"Name Book:","text","");
-    $seeBook->addField("category" ,"Category:","text","");
-    $seeBook->addField("description" ,"Description:","text","");
-    $seeBook->addField("author" ,"Author:","text","");
+    $seeBook->addField("isbn","ISBN:","text",$dataBook['isbn'], "disabled");
+    $seeBook->addField("name" ,"Name Book:","text",$dataBook['name_book'], "disabled");
+    $seeBook->addField("category" ,"Category:","text",$dataBook['category'], "disabled");
+    $seeBook->addField("description" ,"Description:","text",$dataBook['description'], "disabled");
+    $seeBook->addField("author" ,"Name Author:","text",$dataBook['name_author'], "disabled");
+    $seeBook->addField("surname" ,"First Surname:","text",$dataBook['first_surname'], "disabled");
 
-    echo "<h2>Login</h2>";
-    echo "<p>Please fill in your credentials to login.</p>";
+    echo "<h2>{$dataBook['name_book']}</h2>";
 
-    if(isset($_SESSION["login"]) && !is_object($_SESSION["login"])){
-        echo "<p>The data entered haven't been correct.</p>";
-        unset($_SESSION['login']);
-    }
+    $seeBook->displayForm();
 
-    $loginform->displayForm();
+require_once "../layout/footer.php";
