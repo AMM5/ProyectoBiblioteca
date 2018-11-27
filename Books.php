@@ -3,7 +3,8 @@
  * Created by PhpStorm.
  * User: diang
  */
-require_once '../BD/conexionBD.php';
+//require_once "'".URLs."BD/conexionBD.php'";
+require_once 'BD/conexionBD.php';
 if(!isset($_SESSION)) session_start();
 class Books {
     private $id;

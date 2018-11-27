@@ -1,7 +1,7 @@
 <?php
     require_once "links/links.php";
     require_once "layout/header.php";
-    require_once "books/Books.php";
+    require_once "Books.php";
 ?>
     <!--BOOKS-->
 <?php $books = new Books();
@@ -11,7 +11,9 @@
         <?php
             while ($book = $bok->fetch_assoc()) {
                 echo "<div class='book'>
-                             <a href='#'><img src=\"img/{$book['isbn']}.jpg\" alt=\"books\" width='220px' height='278.99px'/></a>
+                             <a href='books/SeeBook.php?id={$book['id']}'>
+                                <img src=\"img/{$book['isbn']}.jpg\" alt=\"books\" width='220px' height='278.99px'/>
+                             </a>
                         </div>";
             }
         ?>

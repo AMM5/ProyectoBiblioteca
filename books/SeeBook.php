@@ -6,7 +6,7 @@
     require_once "../links/links.php";
     require_once "../layout/header.php";
     require_once("../formularios/ClassForm.php");
-    require_once ("Books.php");
+    require_once("../Books.php");
     $seeBook = new ClassForm("processBook.php","", "");
 
     $book = new Books();
@@ -25,5 +25,7 @@
     echo "<h2>{$dataBook['name_book']}</h2>";
 
     $seeBook->displayForm();
+
+    echo "<img src=\"../img/{$dataBook['isbn']}.jpg\" alt=\"books\" width='220px' height='278.99px'/>";
 
 require_once "../layout/footer.php";

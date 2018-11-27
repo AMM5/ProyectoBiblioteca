@@ -11,8 +11,8 @@ require_once "../layout/header.php";
 
     $loginform = new ClassForm("processlogin.php","Login", "Reset");
 
-    $loginform->addField("user","Username:","text","");
-    $loginform->addField("pwd" ,"Password:","password","");
+    $loginform->addField("user","Username:","text","", "");
+    $loginform->addField("pwd" ,"Password:","password","", "");
 
     echo "<h2>Login</h2>";
     echo "<p>Please fill in your credentials to login.</p>";
