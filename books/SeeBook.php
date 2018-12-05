@@ -7,7 +7,7 @@
     require_once "../layout/header.php";
     require_once("../formularios/ClassForm.php");
     require_once("../Books.php");
-    $seeBook = new ClassForm("processBook.php","Send", "");
+    $seeBook = new ClassForm("../reservation/processBook.php?id={$_GET['id']}","Send", "");
 
     $book = new Books();
     $book->setId($_GET['id']);
@@ -21,7 +21,6 @@
     $seeBook->addField("description" ,"Description:","text",$dataBook['description'], "readonly");
     $seeBook->addField("author" ,"Name Author:","text",$dataBook['name_author'], "readonly");
     $seeBook->addField("surname" ,"First Surname:","text",$dataBook['first_surname'], "readonly");
-    $seeBook->addField("date" ,"Date Reserve:","date","", "required");
 
     echo "<h2>{$dataBook['name_book']}</h2>";
 

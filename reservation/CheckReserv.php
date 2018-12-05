@@ -5,50 +5,44 @@
  */
 require_once '../BD/conexionBD.php';
 class CheckReserv {
-    private $isbn;
-    private $copy = [];
 
     function __construct() {
         $this->db = BD::connect();
     }
 
-    /**
-     * @return mixed
-     */
-    public function getIsbn()
-    {
-        return $this->isbn;
-    }
+    function checkreserv($dates, $id) {
 
-    /**
-     * @param mixed $isbn
-     */
-    public function setIsbn($isbn)
-    {
-        $this->isbn = $isbn;
-    }
+        $date = new DateTime($dates);
+        $date->sub(new DateInterval("P21D"));
 
-    /**
-     * @return array
-     */
-    public function getCopy()
-    {
-        return $this->copy;
-    }
+        $sql = "select count(*) as total from reservation where id_book= {$id} and takenDate between '{$date}' and '{$userDate2}';";
 
-    /**
-     * @param array $copy
-     */
-    public function setCopy($copy)
-    {
-        $this->copy = $copy;
-    }
 
-    function checkCopy() {
-        $sql = "SELECT id from copy WHERE id = (SELECT id FROM books WHERE isbn = $this->isbn)";
+        /*$id = $_POST['id'];
+        $date = $_POST['takenDate'];
+        /var_dump($_POST);
+        die();/
+        $dateObj = new DateTime($date);
+        $userDate = $dateObj->format('Y-m-d');
 
-        $this->copy = $this->db->query($sql);
+        $dateObj->sub(new DateInterval('P21D'));
+        $userDateLess20 = $dateObj->format('Y-m-d');
 
-        mysqli_close($this->db);
+        $dateObj->add(new DateInterval('P41D'));
+        $userDateAdd20 = $dateObj->format('Y-m-d');
+
+        /echo $dateObj->format('Y-m-d');
+        die();/
+        $reserveObj = new Reserve();
+        $result1 = $reserveObj->checkDates($userDateLess20, $userDate, $id);
+
+        $result2 = $reserveObj->checkDates($userDate, $userDateAdd20, $id);
+
+        if($result1 && $result2){
+            // Create Reserve
+        }else{
+            $_SESSION['error_date_reserve'] = "Selected Date isn't available ";
+            header('Location:'.BASE_URL.'Reserve/create&id='.$id);
+        }*/
     }
 }
