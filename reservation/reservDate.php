@@ -9,4 +9,4 @@ require_once "CheckReserv.php";
     $id = $_GET['id'];
     $date = $_POST["reserve"];
 
-    $obj->checkreserv($date, $id);
+    $obj->checkreserve($date, $id);

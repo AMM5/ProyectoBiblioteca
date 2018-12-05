@@ -5,44 +5,47 @@
  */
 require_once '../BD/conexionBD.php';
 class CheckReserv {
-
+    private $db;
     function __construct() {
         $this->db = BD::connect();
     }
 
-    function checkreserv($dates, $id) {
+    function checkDates($id, $date, $userDate) {
+        $sql = "select count(*) as total from reservation where id_book= {$id} and takenDate between '{$date}' and '{$userDate}';";
+
+        $res = $this->db->query($sql);
+
+        $count = $res->fetch_assoc();
+
+        if ($count['total']<2) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    function checkreserve($dates, $id) {
 
         $date = new DateTime($dates);
+        $userDate = $date->format('Y-m-d');
         $date->sub(new DateInterval("P21D"));
 
-        $sql = "select count(*) as total from reservation where id_book= {$id} and takenDate between '{$date}' and '{$userDate2}';";
+        $userDateLess20 = $date->format('Y-m-d');
 
+        $date->add(new DateInterval('P41D'));
+        $userDateAdd20 = $date->format('Y-m-d');
 
-        /*$id = $_POST['id'];
-        $date = $_POST['takenDate'];
-        /var_dump($_POST);
-        die();/
-        $dateObj = new DateTime($date);
-        $userDate = $dateObj->format('Y-m-d');
+        $result1 = $this->checkDates($id,$userDateLess20,$userDate);
 
-        $dateObj->sub(new DateInterval('P21D'));
-        $userDateLess20 = $dateObj->format('Y-m-d');
-
-        $dateObj->add(new DateInterval('P41D'));
-        $userDateAdd20 = $dateObj->format('Y-m-d');
-
-        /echo $dateObj->format('Y-m-d');
-        die();/
-        $reserveObj = new Reserve();
-        $result1 = $reserveObj->checkDates($userDateLess20, $userDate, $id);
-
-        $result2 = $reserveObj->checkDates($userDate, $userDateAdd20, $id);
+        $result2 = $this->checkDates($id,$userDateAdd20, $userDate);
 
         if($result1 && $result2){
             // Create Reserve
+            echo "que tal";
         }else{
-            $_SESSION['error_date_reserve'] = "Selected Date isn't available ";
-            header('Location:'.BASE_URL.'Reserve/create&id='.$id);
-        }*/
+            echo "hola";
+            //$_SESSION['error_date_reserve'] = "Selected Date isn't available ";
+            header('Location:processBook.php?id='.$id.'&name='.$_GET['name']);
+        }
     }
 }

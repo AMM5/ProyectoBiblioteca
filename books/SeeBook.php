@@ -7,7 +7,7 @@
     require_once "../layout/header.php";
     require_once("../formularios/ClassForm.php");
     require_once("../Books.php");
-    $seeBook = new ClassForm("../reservation/processBook.php?id={$_GET['id']}","Send", "");
+    $seeBook = new ClassForm("../reservation/processBook.php?id={$_GET['id']}","Reserve", "");
 
     $book = new Books();
     $book->setId($_GET['id']);
