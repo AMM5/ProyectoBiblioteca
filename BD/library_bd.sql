@@ -123,10 +123,16 @@ CREATE TABLE `copy` (
 -- Volcado de datos para la tabla `copy`
 --
 /*
-INSERT INTO `copy` (`id`, `id_book`, `status`) VALUES
-(1, 1, 'available'),
-(2, 1, 'available'),
-(3, 1, 'available');*/
+INSERT INTO `copy` (`id`, `id_book`, `status`) VALUES (NULL, '1', 'new');
+INSERT INTO `copy` (`id`, `id_book`, `status`) VALUES (NULL, '1', 'new');
+INSERT INTO `copy` (`id`, `id_book`, `status`) VALUES (NULL, '3', 'written');
+INSERT INTO `copy` (`id`, `id_book`, `status`) VALUES (NULL, '3', 'poor condition');
+INSERT INTO `copy` (`id`, `id_book`, `status`) VALUES (NULL, '3', 'new');
+INSERT INTO `copy` (`id`, `id_book`, `status`) VALUES (NULL, '4', 'new');
+INSERT INTO `copy` (`id`, `id_book`, `status`) VALUES (NULL, '1', 'poor condition');
+INSERT INTO `copy` (`id`, `id_book`, `status`) VALUES (NULL, '4', 'standard');
+INSERT INTO `copy` (`id`, `id_book`, `status`) VALUES (NULL, '4', 'poor condition');
+*/
 
 -- --------------------------------------------------------
 

@@ -9,4 +9,6 @@ require_once "CheckReserv.php";
     $id = $_GET['id'];
     $date = $_POST["reserve"];
 
+
+
     $obj->checkreserve($date, $id);

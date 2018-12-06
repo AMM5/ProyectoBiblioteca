@@ -20,6 +20,11 @@ require_once("../Books.php");
 
     echo "<h2>Reservation</h2>";
 
+    if(isset($_SESSION["date_reserve"]) && $_SESSION["date_reserve"]== "failed"){
+        echo "<p>Selected Date isn't available.</p>";
+        unset($_SESSION['date_reserve']);
+    }
+
     $seeBook->displayForm();
 
 require_once "../layout/footer.php";

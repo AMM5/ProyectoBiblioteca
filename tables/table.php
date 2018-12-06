@@ -25,8 +25,9 @@ class table {
 /*****************TABLE RESERV*********/
     function paintTableReserv() {
         $usr = $_SESSION['login'];
-        $sql = "SELECT id_book_copy_fk, isbn, name_book, takenDate, returnDate from borrow join copy c on id_copy_fk=c.id JOIN books b on id_book=b.id 
-                  WHERE id_username = $usr->id;";
+        /*$sql = "SELECT id_book_copy_fk, isbn, name_book, takenDate, returnDate from borrow join copy c on id_copy_fk=c.id JOIN books b on id_book=b.id
+                  WHERE id_user = $usr->id;";*/
+        $sql = "SELECT id_book, isbn, name_book, takenDate from reservation r join books b on r.id_book=b.id where r.id_user = $usr->id;";
 
         $reserv = $this->db->query($sql);
         // painting header and showing results
@@ -36,6 +37,7 @@ class table {
         foreach ($this->fields as $value) {
             echo "<th>".$value."</th>";
         }
+
         $rows = $reserv->num_rows;
         if ($rows == 0) {
             echo "There aren't any books";
@@ -43,9 +45,13 @@ class table {
 
         // loop to show results
         while ($row = $reserv->fetch_assoc()) {
+            $takenDate = new DateTime($row['takenDate']);
+            $takenDate->add(new DateInterval('P41D'));
+            $userDateAdd20 = $takenDate->format('Y-m-d');
+
             echo
                 "<tr><td><img src=\"../img/{$row['isbn']}.jpg\" width='110px' height='139.5px'/></td><td>".$row['name_book'].
-                    "</td><td>".$row['takenDate']."</td><td>".$row['returnDate']."</td><td><a href='../books/SeeBook.php?id={$row['id_book_copy_fk']}'><img src='../img/browser.png'/></a></td></tr>";
+                    "</td><td>".$row['takenDate']."</td><td>".$userDateAdd20."</td><td><a href='../books/SeeBook.php?id={$row['id_book']}'><img src='../img/browser.png'/></a></td></tr>";
         }
 
         echo "</tr>";
