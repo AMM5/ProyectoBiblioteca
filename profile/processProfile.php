@@ -6,11 +6,15 @@
 
     if(!isset($_SESSION)) session_start();
 
+
     require_once ("../User.php");
 
     $usr = new User ();
-
-    $usr->setId($_SESSION['login']->id);
+    if(isset($_GET['id'])) {
+        $usr->setId($_GET['id']);
+    } else {
+        $usr->setId($_SESSION['login']->id);
+    }
     $usr->setNameUser($_POST["name"]);
     $usr->setFirstSurname($_POST["surname1"]);
     $usr->setSecondSurname($_POST["surname2"]);

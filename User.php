@@ -182,7 +182,28 @@ class User {
     {
         $this->typeUser = $typeUser;
     }
+/*************DELETE USER**************/
+    function deleteUser() {
+        $sql = "DELETE FROM users WHERE id={$this->id};";
 
+        if (mysqli_query($this->db, $sql)) {
+            $_SESSION['deleteUser'] = "completed";
+            header("location:../index.php");
+        } else {
+            $_SESSION['deleteUser'] = "failed";
+            header("location:modifyprofile.php?id={$this->id}");
+        }
+        mysqli_close($this->db);
+    }
+/*************SELECT USER**************/
+    function selectUser() {
+        $sql = "select * from users where id = '{$this->id}'";
+        $select = $this->db->query($sql);
+
+        return $select;
+
+        mysqli_close($this->db);
+    }
 
 
 
@@ -194,11 +215,6 @@ class User {
             return true;
         }
         return false;
-    }
-
-    function checkUsers() {
-        if ($this->checkUsername()) {
-        }
     }
 
 /******************LOGIN********************************/

@@ -22,6 +22,37 @@ class table {
         $this->files=$files;
     }
 
+/************TABLE USERS***************/
+    function paintTableUser() {
+        $sql = "SELECT * FROM users where type_of_user=1; ";
+
+        $reserv = $this->db->query($sql);
+        // painting header and showing results
+        echo "<h2 align = center>$this->title</h2><br>";
+        echo "<table border = 1 align = center>
+        <tr>";
+        foreach ($this->fields as $value) {
+            echo "<th>".$value."</th>";
+        }
+
+        $rows = $reserv->num_rows;
+        if ($rows == 0) {
+            echo "There aren't any Users";
+        }
+
+        // loop to show results
+        while ($row = $reserv->fetch_assoc()) {
+            echo
+                "<tr align = center><td>{$row['id']}</td><td>{$row['username']}</td><td>{$row['name_user']}</td>
+                    <td>{$row['first_surname']}</td><td>{$row['second_surname']}</td><td>{$row['dni']}</td>
+                    <td>{$row['email']}</td><td>{$row['phone_number']}</td><td><a href='../profile/{$this->files[0]}?id={$row['id']}'><img src='../img/modify.png'/></a></td>
+                    <td><a href='../profile/{$this->files[1]}?id={$row['id']}'><img src='../img/delete.png'/></a></td></tr>";
+        }
+
+        echo "</tr>";
+        echo "</table>";
+    }
+
 /*****************TABLE RESERV*********/
     function paintTableReserv() {
         $usr = $_SESSION['login'];
@@ -46,7 +77,7 @@ class table {
         // loop to show results
         while ($row = $reserv->fetch_assoc()) {
             $takenDate = new DateTime($row['takenDate']);
-            $takenDate->add(new DateInterval('P41D'));
+            $takenDate->add(new DateInterval('P21D'));
             $userDateAdd20 = $takenDate->format('Y-m-d');
 
             echo

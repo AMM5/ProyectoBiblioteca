@@ -29,7 +29,8 @@ if(!isset($_SESSION)) session_start();
                 <?php else: ?>
                     <li><a href="<?=URL?>profile/profile.php">My Profile </a></li>
                     <?php if(isset($_SESSION["librarian"])): ?>
-                        <li><a href="#">Users</a></li>
+                        <li><a href="<?=URL?>tables/tableUser.php">Users</a></li>
+                        <li><a href="#">Books</a></li>
                     <?php elseif(isset($_SESSION["admin"])): ?>
                         <li><a href="#">Users</a></li>
                         <li><a href="#">Librarians</a></li>
