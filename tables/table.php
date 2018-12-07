@@ -45,7 +45,9 @@ class table {
             echo
                 "<tr align = center><td>{$row['id']}</td><td>{$row['username']}</td><td>{$row['name_user']}</td>
                     <td>{$row['first_surname']}</td><td>{$row['second_surname']}</td><td>{$row['dni']}</td>
-                    <td>{$row['email']}</td><td>{$row['phone_number']}</td><td><a href='../profile/{$this->files[0]}?id={$row['id']}'><img src='../img/modify.png'/></a></td>
+                    <td>{$row['email']}</td><td>{$row['phone_number']}</td>
+                    <td><a href='../reservation/{$this->files[2]}?id={$row['id']}'><img src='../img/browser.png'/></a></td>
+                    <td><a href='../profile/{$this->files[0]}?id={$row['id']}'><img src='../img/modify.png'/></a></td>
                     <td><a href='../profile/{$this->files[1]}?id={$row['id']}'><img src='../img/delete.png'/></a></td></tr>";
         }
 
@@ -55,7 +57,11 @@ class table {
 
 /*****************TABLE RESERV*********/
     function paintTableReserv() {
-        $usr = $_SESSION['login'];
+        if (isset($_GET)) {
+            $usr = $_GET['id'];
+        } else {
+            $usr = $_SESSION['login'];
+        }
         /*$sql = "SELECT id_book_copy_fk, isbn, name_book, takenDate, returnDate from borrow join copy c on id_copy_fk=c.id JOIN books b on id_book=b.id
                   WHERE id_user = $usr->id;";*/
         $sql = "SELECT id_book, isbn, name_book, takenDate from reservation r join books b on r.id_book=b.id where r.id_user = $usr->id;";
@@ -82,7 +88,7 @@ class table {
 
             echo
                 "<tr><td><img src=\"../img/{$row['isbn']}.jpg\" width='110px' height='139.5px'/></td><td>".$row['name_book'].
-                    "</td><td>".$row['takenDate']."</td><td>".$userDateAdd20."</td><td><a href='../books/SeeBook.php?id={$row['id_book']}'><img src='../img/browser.png'/></a></td></tr>";
+                    "</td><td>".$row['takenDate']."</td><td>".$userDateAdd20."</td><td><a href='../books/{$this->files[0]}?id={$row['id_book']}'><img src='../img/browser.png'/></a></td></tr>";
         }
 
         echo "</tr>";

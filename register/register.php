@@ -19,7 +19,12 @@ require_once "../layout/header.php";
     $phone_form->addField("username","Username:","text","", "");
     $phone_form->addField("pwd","Password:","password","", "");
     $phone_form->addField("pwd2","Confirm Password:","password","", "");
-    echo "<h2>Sign Up</h2>";
+
+    if (isset($_SESSION['librarian'])) {
+        echo "<h2>Add User</h2>";
+    } else {
+        echo "<h2>Sign Up</h2>";
+    }
     echo "<p>Please fill this form to create an account.</p>";
 
     if (isset($_SESSION['register']) && $_SESSION['register'] == "failed") {
