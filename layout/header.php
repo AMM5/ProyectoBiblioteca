@@ -27,10 +27,10 @@ if(!isset($_SESSION)) session_start();
                     <li><a href="<?=URL?>login/login.php">Login</a></li>
                     <li><a href="<?=URL?>register/register.php">Sign Up</a></li>
                 <?php else: ?>
-                    <li><a href="<?=URL?>profile/profile.php">My Profile </a></li>
+                    <li><a href="<?=URL?>profile/profile.php">My Profile</a></li>
                     <?php if(isset($_SESSION["librarian"])): ?>
                         <li><a href="<?=URL?>tables/tableUser.php">Users</a></li>
-                        <li><a href="#">Books</a></li>
+                        <li><a href="<?=URL?>books/tableBooks.php">Books</a></li>
                     <?php elseif(isset($_SESSION["admin"])): ?>
                         <li><a href="#">Users</a></li>
                         <li><a href="#">Librarians</a></li>

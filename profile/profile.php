@@ -10,7 +10,7 @@
 
 
 
-$user = $_SESSION['login'];
+    $user = $_SESSION['login'];
 
     $profile = new ClassForm("processProfile.php","Save", "");
 
