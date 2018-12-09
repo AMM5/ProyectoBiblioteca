@@ -2,9 +2,8 @@
 /**
  * Created by PhpStorm.
  * User: diang
- * Date: 19/11/2018
- * Time: 16:52
  */
+if(!isset($_SESSION)) session_start();
 require_once("LabelInput.php");
 class ClassForm {
     private $action;
@@ -20,12 +19,19 @@ class ClassForm {
     function addField($name, $nameLabel, $type, $value, $anything) {
         $this->labelinput[] = new Labelinput($name, $nameLabel, $type, $value, $anything);
     }
-
+    function paintLabelInput() {
+        foreach ($this->labelinput as $label) {
+            echo $label;
+        }
+    }
     function displayForm() {
         echo "<form action='".$this->action."' method='POST'>";
-            foreach ($this->labelinput as $label) {
-                echo $label;
+            $this->paintLabelInput();
+            if (isset($_SESSION['admin'])) {
+                echo "<p><input type='radio' name='usertype' value='1'>User</p>";
+                echo "<p><input type='radio' name='usertype' value='2'>Librarian</p>";
             }
+
             echo "<div class='botones'>";
                 if ($this->buttonReset != "") {
                     echo "<input type='submit' value='" . $this->button . "'/>";

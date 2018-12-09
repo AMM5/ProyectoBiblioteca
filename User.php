@@ -205,8 +205,6 @@ class User {
         mysqli_close($this->db);
     }
 
-
-
 /**************CHECKING USER***********/
     function checkUsername() {
         $sql = "select * from users where username = '{$this->username}';";

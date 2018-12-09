@@ -3,6 +3,8 @@
  * Created by PhpStorm.
  * User: diang
  */
+
+if(!isset($_SESSION)) session_start();
     require_once ("../User.php");
 
     $usr = new User ();
@@ -15,5 +17,10 @@
     $usr->setPhoneNumber($_POST["phone"]);
     $usr->setUsername($_POST["username"]);
     $usr->setPassword($_POST["pwd"]);
+
+    if (isset($_SESSION['admin'])) {
+        $usr->setTypeUser($_POST['usertype']);
+    }
+
 
     $usr->insertDate();

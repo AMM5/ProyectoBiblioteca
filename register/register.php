@@ -22,6 +22,8 @@ require_once "../layout/header.php";
 
     if (isset($_SESSION['librarian'])) {
         echo "<h2>Add User</h2>";
+    } else if($_SESSION['admin']) {
+        echo "<h2>Add User/Librarian</h2>";
     } else {
         echo "<h2>Sign Up</h2>";
     }

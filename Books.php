@@ -114,6 +114,44 @@ class Books {
         $this->author_id = $author_id;
     }
 
+   /* function selectAuthor($author, $surname) {
+        $sql = "select * from authors where name_author = '{$author}' and first_surname = '{$surname}';";
+        $check = $this->db->query($sql);
+        $book = $check->fetch_object();
+        return $book;
+    }*/
+/**************MODIFY BOOK*******************************/
+    function modifyBook() {
+        $sql = "UPDATE books SET isbn='{$this->isbn}', name_book='{$this->name_book}', category='{$this->category}',
+                  description='{$this->description}', author_id={$this->author_id}
+                  WHERE id={$this->id};";
+
+        if (mysqli_query($this->db, $sql)) {
+            $_SESSION['updateBook'] = "completed";
+            header("location:../books/tableBooks.php");
+        } else {
+            $_SESSION['updateBook'] = "failed";
+            header("location:../books/modifybook.php?id=$this->id");
+            // echo "Error: " . $sql . "<br>" . mysqli_error($this->db);
+        }
+
+        mysqli_close($this->db);
+    }
+/**************INSERT BOOK**********************/
+    function insertBook() {
+        $sql = "INSERT INTO books VALUES (null, '$this->isbn', '{$this->name_book}', '{$this->category}', '$this->description', $this->author_id);";
+
+        if (mysqli_query($this->db, $sql)) {
+            $_SESSION['addbook'] = "completed";
+            header("location:../books/tableBooks.php");
+        } else {
+            $_SESSION['addbook'] = "failed";
+            header("location:../books/addbooks.php");
+            // echo "Error: " . $sql . "<br>" . mysqli_error($this->db);
+        }
+
+        mysqli_close($this->db);
+    }
 /**************SEE BOOK INSIDE PAGE**********************/
     function seeBook() {
         $sql = "SELECT * from books ORDER BY RAND()";
@@ -133,6 +171,20 @@ class Books {
 
         return $register;
 
+        mysqli_close($this->db);
+    }
+
+/**************DELEDTE BOOK**********************/
+    function deleteBook() {
+        $sql = "DELETE FROM books WHERE id={$this->id};";
+
+        if (mysqli_query($this->db, $sql)) {
+            $_SESSION['deleteUser'] = "completed";
+            header("location:../books/tableBooks.php");
+        } else {
+            $_SESSION['deleteUser'] = "failed";
+            header("location:../books/tableBooks.php");
+        }
         mysqli_close($this->db);
     }
 }

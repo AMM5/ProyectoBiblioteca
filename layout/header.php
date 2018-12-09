@@ -32,8 +32,8 @@ if(!isset($_SESSION)) session_start();
                         <li><a href="<?=URL?>tables/tableUser.php">Users</a></li>
                         <li><a href="<?=URL?>books/tableBooks.php">Books</a></li>
                     <?php elseif(isset($_SESSION["admin"])): ?>
-                        <li><a href="#">Users</a></li>
-                        <li><a href="#">Librarians</a></li>
+                        <li><a href="<?=URL?>tables/tableUser.php">Users</a></li>
+                        <li><a href="<?=URL?>librarians/tableLibrarians.php">Librarians</a></li>
                     <?php endif;?>
                     <li><a href="<?=URL?>reservation/reservation.php"">Reservation</a></li>
                     <li><form action="<?=URL?>login/logout.php"><input type="submit" value="Logout"/></form></li>

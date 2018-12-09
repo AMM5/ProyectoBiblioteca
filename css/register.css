@@ -8,5 +8,9 @@ form {
 }
 
 input {
-    width: 10vw;
+    width: 15vw;
+}
+
+select {
+    width: 15vw;
 }

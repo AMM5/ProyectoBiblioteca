@@ -12,5 +12,9 @@ require_once "../tables/table.php";
     $files = array("modifyuser.php", "deleteUser.php", "reservation.php");
     $connectionTable = new table("Users",$fields, $files);
     $connectionTable->paintTableUser();
-    echo "<a href='".URL."register/register.php'>Add User</a>";
+    if (isset($_SESSION['admin'])) {
+        echo "<a href='".URL."register/register.php'>Add User/Librarian</a>";
+    } else {
+        echo "<a href='".URL."register/register.php'>Add User</a>";
+    }
 require_once "../layout/footer.php";
