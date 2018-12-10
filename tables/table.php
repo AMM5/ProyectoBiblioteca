@@ -9,7 +9,6 @@ if(!isset($_SESSION)) session_start();
 class table {
     private $title;
     private $db;
-    private $tableName;
     private $fields = array();
     private $files = array();
 
@@ -28,8 +27,12 @@ class table {
 
         $reserv = $this->db->query($sql);
         // painting header and showing results
+        echo "<div class='container'>";
+        echo "<div class='row'>";
+        echo "<div class='col-md-12'>";
         echo "<h2 align = center>$this->title</h2><br>";
-        echo "<table border = 1 align = center>
+        echo "<div class='table-responsive'>";
+        echo "<table id='mytable' class='table table-bordred table-striped'>
         <tr>";
         foreach ($this->fields as $value) {
             echo "<th>".$value."</th>";
@@ -37,7 +40,7 @@ class table {
 
         $rows = $reserv->num_rows;
         if ($rows == 0) {
-            echo "There aren't any Users";
+            echo "<p class='alert alert-warning'>There aren't any Users</p>";
         }
 
         // loop to show results
@@ -52,6 +55,10 @@ class table {
 
         echo "</tr>";
         echo "</table>";
+        echo "</div>";
+        echo "</div>";
+        echo "</div>";
+        echo "</div>";
     }
 /**************TABLE AUTHORS***********/
     function paintTableAuthor() {
@@ -59,8 +66,12 @@ class table {
 
         $reserv = $this->db->query($sql);
         // painting header and showing results
+        echo "<div class='container'>";
+        echo "<div class='row'>";
+        echo "<div class='col-md-12'>";
         echo "<h2 align = center>$this->title</h2><br>";
-        echo "<table border = 1 align = center>
+        echo "<div class='table-responsive'>";
+        echo "<table id='mytable' class='table table-bordred table-striped'>
         <tr>";
         foreach ($this->fields as $value) {
             echo "<th>".$value."</th>";
@@ -68,7 +79,7 @@ class table {
 
         $rows = $reserv->num_rows;
         if ($rows == 0) {
-            echo "There aren't any authors";
+            echo "<p class='alert alert-warning'>There aren't any authors</p>";
         }
 
         // loop to show results
@@ -82,6 +93,10 @@ class table {
 
         echo "</tr>";
         echo "</table>";
+        echo "</div>";
+        echo "</div>";
+        echo "</div>";
+        echo "</div>";
     }
 /**************TABLE COPY**************/
     function paintTableCopy($ides) {
@@ -89,8 +104,12 @@ class table {
 
         $reserv = $this->db->query($sql);
         // painting header and showing results
+        echo "<div class='container'>";
+        echo "<div class='row'>";
+        echo "<div class='col-md-12'>";
         echo "<h2 align = center>$this->title</h2><br>";
-        echo "<table border = 1 align = center>
+        echo "<div class='table-responsive'>";
+        echo "<table id='mytable' class='table table-bordred table-striped'>
         <tr>";
         foreach ($this->fields as $value) {
             echo "<th>".$value."</th>";
@@ -98,7 +117,7 @@ class table {
 
         $rows = $reserv->num_rows;
         if ($rows == 0) {
-            echo "There aren't any copies";
+            echo "<p class='alert alert-warning'>There aren't any copies</p>";
         }
 
         // loop to show results
@@ -112,6 +131,10 @@ class table {
 
         echo "</tr>";
         echo "</table>";
+        echo "</div>";
+        echo "</div>";
+        echo "</div>";
+        echo "</div>";
     }
 
 /************TABLE BOOKS***************/
@@ -120,8 +143,12 @@ class table {
 
         $reserv = $this->db->query($sql);
         // painting header and showing results
+        echo "<div class='container'>";
+        echo "<div class='row'>";
+        echo "<div class='col-md-12'>";
         echo "<h2 align = center>$this->title</h2><br>";
-        echo "<table border = 1 align = center>
+        echo "<div class='table-responsive'>";
+        echo "<table id='mytable' class='table table-bordred table-striped'>
         <tr>";
         foreach ($this->fields as $value) {
             echo "<th>".$value."</th>";
@@ -129,7 +156,7 @@ class table {
 
         $rows = $reserv->num_rows;
         if ($rows == 0) {
-            echo "There aren't any books";
+            echo "<p class='alert alert-warning'>There aren't any books</p>";
         }
 
         // loop to show results
@@ -144,6 +171,10 @@ class table {
 
         echo "</tr>";
         echo "</table>";
+        echo "</div>";
+        echo "</div>";
+        echo "</div>";
+        echo "</div>";
     }
 /************TABLE USERS***************/
     function paintTableUser() {
@@ -151,8 +182,13 @@ class table {
 
         $reserv = $this->db->query($sql);
         // painting header and showing results
+echo "<div class='container'>";
+    echo "<div class='row'>";
+      echo "<div class='col-md-12'>";
         echo "<h2 align = center>$this->title</h2><br>";
-        echo "<table border = 1 align = center>
+        echo "<div class='table-responsive'>";
+
+        echo "<table id='mytable' class='table table-bordred table-striped'>
         <tr>";
         foreach ($this->fields as $value) {
             echo "<th>".$value."</th>";
@@ -160,7 +196,7 @@ class table {
 
         $rows = $reserv->num_rows;
         if ($rows == 0) {
-            echo "There aren't any Users";
+            echo "<p class='alert alert-warning'>There aren't any Users</p>";
         }
 
         // loop to show results
@@ -169,13 +205,17 @@ class table {
                 "<tr align = center><td>{$row['id']}</td><td>{$row['username']}</td><td>{$row['name_user']}</td>
                     <td>{$row['first_surname']}</td><td>{$row['second_surname']}</td><td>{$row['dni']}</td>
                     <td>{$row['email']}</td><td>{$row['phone_number']}</td>
-                    <td><a href='../reservation/{$this->files[2]}?id={$row['id']}'><img src='../img/browser.png'/></a></td>
-                    <td><a href='../profile/{$this->files[0]}?id={$row['id']}'><img src='../img/modify.png'/></a></td>
-                    <td><a href='../profile/{$this->files[1]}?id={$row['id']}'><img src='../img/delete.png'/></a></td></tr>";
+                    <td><a href='../reservation/{$this->files[0]}?id={$row['id']}'><img src='../img/browser.png'/></a></td>
+                    <td><a href='../profile/{$this->files[1]}?id={$row['id']}'><img src='../img/modify.png'/></a></td>
+                    <td><a href='../profile/{$this->files[2]}?id={$row['id']}'><img src='../img/delete.png'/></a></td></tr>";
         }
 
         echo "</tr>";
         echo "</table>";
+        echo "</div>";
+        echo "</div>";
+    echo "</div>";
+echo "</div>";
     }
 
 /*****************TABLE RESERV*********/
@@ -196,8 +236,13 @@ class table {
 
         $reserv = $this->db->query($sql);
         // painting header and showing results
+echo "<div class='container'>";
+echo "<div class='row'>";
+    echo "<div class='col-md-12'>";
         echo "<h2 align = center>$this->title</h2><br>";
-        echo "<table border = 1 align = center>
+    echo "<div class='table-responsive'>";
+
+        echo "<table id='mytable' class='table table-bordred table-striped'>
         <tr>";
         foreach ($this->fields as $value) {
             echo "<th>".$value."</th>";
@@ -205,7 +250,7 @@ class table {
 
         $rows = $reserv->num_rows;
         if ($rows == 0) {
-            echo "There aren't any books";
+            echo "<p class='alert alert-warning'>There aren't any books</p>";
         }
 
         // loop to show results
@@ -216,10 +261,15 @@ class table {
 
             echo
                 "<tr><td><img src=\"../img/{$row['isbn']}.jpg\" width='110px' height='139.5px'/></td><td>".$row['name_book'].
-                    "</td><td>".$row['takenDate']."</td><td>".$userDateAdd20."</td><td><a href='../books/{$this->files[0]}?id={$row['id_book']}'><img src='../img/browser.png'/></a></td></tr>";
+                    "</td><td>".$row['takenDate']."</td><td>".$userDateAdd20."</td><td><a href='../books/{$this->files[0]}?id={$row['id_book']}'><img src='../img/browser.png'/></a></td>
+                </tr>";
         }
 
         echo "</tr>";
         echo "</table>";
+        echo "</div>";
+        echo "</div>";
+echo "</div>";
+echo "</div>";
     }
 }

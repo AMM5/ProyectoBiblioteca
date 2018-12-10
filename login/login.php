@@ -11,18 +11,22 @@ require_once "../layout/header.php";
 
     $loginform = new ClassForm("processlogin.php","Login", "Reset");
 
-    $loginform->addField("user","Username:","text","", "");
-    $loginform->addField("pwd" ,"Password:","password","", "");
+    $loginform->addField("user","Username:","text","", "required class='form-control'");
+    $loginform->addField("pwd" ,"Password:","password","", "required class='form-control'");
+    echo "<div class='wrapper'>";
+        echo "<div class='container'>";
+            echo "<h2>Login</h2>";
+            echo "<p>Please fill in your credentials to login.</p>";
 
-    echo "<h2>Login</h2>";
-    echo "<p>Please fill in your credentials to login.</p>";
+            if(isset($_SESSION["login"]) && !is_object($_SESSION["login"])){
+                echo "<p class='alert alert-warning'>The data entered haven't been correct.</p>";
+                unset($_SESSION['login']);
+            }
 
-    if(isset($_SESSION["login"]) && !is_object($_SESSION["login"])){
-        echo "<p>The data entered haven't been correct.</p>";
-        unset($_SESSION['login']);
-    }
-
-    $loginform->displayForm();
+            $loginform->displayForm();
+            echo "<p>Don't have an account? <a href='../register/register.php'>Sign up now</a>.</p>";
+        echo "</div>";
+    echo "</div>";
 
 require_once "../layout/footer.php";
 ?>

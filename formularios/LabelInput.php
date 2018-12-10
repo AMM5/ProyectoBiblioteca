@@ -23,7 +23,7 @@ class LabelInput {
     }
 
     function __toString() {
-        return "<label for='".$this->name."'> $this->nameLabel</label>"
-            ."<input type='".$this->type."' name='".$this->name."' value='".$this->value."'$this->anything/>";
+        return "<div class='form-group'><label for='".$this->name."'> $this->nameLabel</label>"
+            ."<input type='".$this->type."' name='".$this->name."' value='".$this->value."'$this->anything/></div>";
     }
 }

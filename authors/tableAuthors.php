@@ -10,7 +10,6 @@ require_once "../tables/table.php";
     $fields = array ("id", "Name Author","Surname", "Update", "Delete");
     $files = array("modifyauthor.php","deleteauthor.php");
     $connectionTable = new table("Authors",$fields, $files);
+echo "<a class='btn btn-success add' href='addauthor.php'>Add Author</a>";
     $connectionTable->paintTableAuthor();
-
-echo "<a href='addauthor.php'>Add Author</a>";
 require_once "../layout/footer.php";

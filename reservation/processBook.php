@@ -15,16 +15,23 @@ require_once("../Books.php");
     }
 
     $seeBook = new ClassForm("reservDate.php?id={$_GET['id']}&name={$name_book}","Send", "");
-    $seeBook->addField("name" ,"Name Book:","text", $name_book, "readonly");
-    $seeBook->addField("reserve" ,"Reserve date:","date","", "required");
-
-    echo "<h2>Reservation</h2>";
-
-    if(isset($_SESSION["date_reserve"]) && $_SESSION["date_reserve"]== "failed"){
-        echo "<p>Selected Date isn't available.</p>";
-        unset($_SESSION['date_reserve']);
+    $seeBook->addField("name" ,"Name Book:","text", $name_book, "readonly required class='form-control'");
+    $seeBook->addField("reserve" ,"Reserve date:","date","", "required required class='form-control'");
+    if (isset($_SESSION['admin'])||isset($_SESSION['librarian'])) {
+        $client = $_POST['user'];
+        $seeBook->addField("idClient" ,"Username Client:","text",$client, "readonly required class='form-control'");
     }
+echo "<div class='wrapper'>";
+    echo "<div class='container'>";
+        echo "<h2>Reservation</h2>";
 
-    $seeBook->displayForm();
+        if(isset($_SESSION["date_reserve"]) && $_SESSION["date_reserve"]== "failed"){
+            echo "<p>Selected Date isn't available.</p>";
+            unset($_SESSION['date_reserve']);
+        }
+
+        $seeBook->displayForm();
+    echo "</div>";
+echo "</div>";
 
 require_once "../layout/footer.php";

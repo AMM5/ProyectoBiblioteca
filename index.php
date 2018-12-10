@@ -6,7 +6,7 @@
     <!--BOOKS-->
 <?php $books = new Books();
       $bok = $books->seeBook()?>
-    <h2>Books</h2>
+    <h2 class="h">BOOKS</h2>
     <div class="books">
         <?php
             while ($book = $bok->fetch_assoc()) {

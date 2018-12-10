@@ -12,7 +12,16 @@ class CheckReserv {
     }
 
     function insertReserve($id, $userDate) {
-        if (isset($_SESSION["login"])) {
+        if (isset($_SESSION['admin'])||isset($_SESSION['admin'])) {
+            $user = $_SESSION["idClient"];
+            $sqlInsert = "INSERT INTO reservation VALUES (null, $id, $user, '{$userDate}')";
+            if (mysqli_query($this->db, $sqlInsert)) {
+                $_SESSION['date_reserve'] = "completed";
+                header("location:../index.php");
+            } else {
+                echo "ERROR";
+            }
+        } elseif (isset($_SESSION["login"])) {
             $user = $_SESSION["login"];
             $sqlInsert = "INSERT INTO reservation VALUES (null, $id, $user->id, '{$userDate}')";
             if (mysqli_query($this->db, $sqlInsert)) {

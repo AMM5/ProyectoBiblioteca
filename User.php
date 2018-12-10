@@ -195,6 +195,16 @@ class User {
         }
         mysqli_close($this->db);
     }
+
+/*************SELECT ALL USER**********/
+    function selectAllUser() {
+        $sql = "select * from users WHERE type_of_user=1";
+        $select = $this->db->query($sql);
+
+        return $select;
+
+        mysqli_close($this->db);
+    }
 /*************SELECT USER**************/
     function selectUser() {
         $sql = "select * from users where id = '{$this->id}'";

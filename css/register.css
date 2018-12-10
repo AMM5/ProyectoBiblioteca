@@ -1,8 +1,26 @@
-form {
+.wrapper {
     display: flex;
     flex-direction: column;
+    justify-content: center;
 }
 
+.container {
+    width: auto;
+}
+.padreimagen {
+    position: relative;
+}
+
+.imagen {
+    position: absolute;
+    top: 8.5rem;
+    right: 20rem;
+}
+
+.add {
+    margin: 1rem;
+}
+/*
 .tituloForm {
     text-align: center;
 }
@@ -13,4 +31,4 @@ input {
 
 select {
     width: 15vw;
-}
+}*/

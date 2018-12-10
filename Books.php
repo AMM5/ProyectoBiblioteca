@@ -114,12 +114,7 @@ class Books {
         $this->author_id = $author_id;
     }
 
-   /* function selectAuthor($author, $surname) {
-        $sql = "select * from authors where name_author = '{$author}' and first_surname = '{$surname}';";
-        $check = $this->db->query($sql);
-        $book = $check->fetch_object();
-        return $book;
-    }*/
+
 /**************MODIFY BOOK*******************************/
     function modifyBook() {
         $sql = "UPDATE books SET isbn='{$this->isbn}', name_book='{$this->name_book}', category='{$this->category}',
