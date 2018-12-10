@@ -26,7 +26,7 @@ class CheckReserv {
             $sqlInsert = "INSERT INTO reservation VALUES (null, $id, $user->id, '{$userDate}')";
             if (mysqli_query($this->db, $sqlInsert)) {
                 $_SESSION['date_reserve'] = "completed";
-                header("location:../index.php");
+                header("location:reservation.php");
             } else {
                 echo "ERROR";
             }
@@ -56,11 +56,13 @@ class CheckReserv {
         $date = new DateTime($dates);
         $userDate = $date->format('Y-m-d');
 
+        $dateaux = new DateTime($dates);
+
         $date->sub(new DateInterval("P21D"));
         $userDateLess20 = $date->format('Y-m-d');
 
-        $date->add(new DateInterval('P41D'));
-        $userDateAdd20 = $date->format('Y-m-d');
+        $dateaux->add(new DateInterval('P21D'));
+        $userDateAdd20 = $dateaux->format('Y-m-d');
 
         $result1 = $this->checkDates($id,$userDateLess20,$userDate);
         $result2 = $this->checkDates($id,$userDateAdd20, $userDate);

@@ -52,7 +52,7 @@ class Copy {
 
         if (mysqli_query($this->db, $sql)) {
             $_SESSION['updateCopy'] = "completed";
-            header("location:copies.php");
+            header("location:copies.php?id={$this->id}");
         } else {
             $_SESSION['updateCopy'] = "failed";
             header("location:updatecopy.php?id=$this->id");
@@ -67,7 +67,7 @@ class Copy {
 
         if (mysqli_query($this->db, $sql)) {
             $_SESSION['insertCopy'] = "completed";
-            header("location:../index.php");
+            header("location:copies.php?id={$this->id}");
         } else {
             $_SESSION['insertCopy'] = "failed";
             header("location:addcopies.php?id={$this->id}");
@@ -83,7 +83,7 @@ class Copy {
 
         if (mysqli_query($this->db, $sql)) {
             $_SESSION['deleteCopy'] = "completed";
-            header("location:../index.php");
+            header("location:.copies.php?id={$this->id}");
         } else {
             $_SESSION['deleteCopy'] = "failed";
             header("location:copies.php?id={$this->id}");

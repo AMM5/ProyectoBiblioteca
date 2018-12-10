@@ -26,7 +26,7 @@ echo "<div class='wrapper'>";
         echo "<h2>Reservation</h2>";
 
         if(isset($_SESSION["date_reserve"]) && $_SESSION["date_reserve"]== "failed"){
-            echo "<p>Selected Date isn't available.</p>";
+            echo "<p class='alert alert-warning'>Selected Date isn't available.</p>";
             unset($_SESSION['date_reserve']);
         }
 
