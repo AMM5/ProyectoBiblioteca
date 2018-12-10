@@ -72,7 +72,7 @@ class CheckReserv {
             $this->insertReserve($id, $userDate);
         }else{
             $_SESSION['date_reserve'] = "failed";
-            header('Location:processBook.php?id='.$id.'&name='.$_GET['name']);
+            header('location:processBook.php?id='.$id.'&name='.$_GET['name']);
         }
     }
 }
